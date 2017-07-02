@@ -1,0 +1,9 @@
+<navbar session="$ctrl.session"></navbar>
+
+<div class="text-center">
+    <h1>Something went wrong.</h1>
+
+    <p ng-if="$ctrl.errorStatusCode">
+        Error code: <span ng-bind="$ctrl.errorStatusCode"></span>
+    </p>
+</div>

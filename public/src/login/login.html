@@ -1,0 +1,26 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="text-center">
+        <img src="/img/logo_big.png" alt="logo" class="img-rounded" width="100" height="100">
+        <h1>Notes</h1>
+    </div>
+
+    <form>
+        <div class="alert alert-danger" ng-if="$ctrl.error" ng-bind="$ctrl.error"></div>
+
+        <div class="form-group form-group-lg">
+            <label class="control-label">Username</label>
+            <input type="text" class="form-control" ng-model="$ctrl.username">
+        </div>
+
+        <div class="form-group form-group-lg">
+            <label class="control-label">Password</label>
+            <input type="password" class="form-control" ng-model="$ctrl.password">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg" ng-click="$ctrl.loginClicked()">
+                Login
+            </button>
+        </div>
+    </form>
+</div>

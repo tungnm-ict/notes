@@ -1,0 +1,47 @@
+{
+  "name": "notes",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "postinstall": "grunt bower"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "glob": "^7.1.1",
+    "grunt-execute": "^0.2.2",
+    "lodash": "^4.17.4",
+    "pg": "^6.2.2",
+    "pg-hstore": "^2.3.2",
+    "q": "^1.5.0",
+    "sequelize": "^3.30.4",
+    "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-bower-task": "^0.5.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-env": "^0.4.4",
+    "grunt-jscs": "^3.0.1",
+    "grunt-karma": "^2.0.0",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "grunt-mocha-test": "^0.13.2",
+    "grunt-run": "^0.6.0",
+    "istanbul": "^0.4.5",
+    "jasmine-core": "^2.6.2",
+    "jshint-stylish": "^2.2.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "load-grunt-tasks": "^3.5.2",
+    "mocha": "^3.4.1",
+    "proxyquire": "^1.8.0",
+    "require.fresh": "0.0.2",
+    "should": "^11.2.1",
+    "sinon": "^2.2.0"
+  }
+}

@@ -1,0 +1,35 @@
+<navbar session="$ctrl.session"></navbar>
+
+<ol class="breadcrumb">
+    <li><a href="#!/">List</a></li>
+    <li><a ng-href="#!/notes/{{ $ctrl.note.id }}" ng-bind="$ctrl.note.subject"></a></li>
+    <li class="active">Edit</li>
+</ol>
+
+<form>
+    <div class="alert alert-danger" ng-if="$ctrl.error" ng-bind="$ctrl.error"></div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" ng-bind="$ctrl.note.subject"></h3>
+        </div>
+
+        <div class="panel-body">
+            <textarea class="form-control" rows="10" ng-model="$ctrl.note.body"></textarea>
+        </div>
+
+        <div class="panel-footer" ng-bind="$ctrl.note.updatedAt | date:'medium'"></div>
+    </div>
+
+    <div class="form-group pull-right">
+        <a class="btn btn-default" href="#!/notes/{{ $ctrl.note.id }}">
+            Cancel
+        </a>
+
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.updateNote()">
+            Save
+        </button>
+    </div>
+</form>
+
+

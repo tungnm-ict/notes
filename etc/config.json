@@ -1,0 +1,19 @@
+{
+    "base": {
+        "port": 7428,
+        "session": {
+            "secret": "63ae6ccebd99d068e378d58859b2d3d20b6a7042"
+        }
+    },
+    "development": {
+        "postgresql": {
+            "url": "postgresql://notes@localhost/notes_development"
+        }
+    },
+    "test": {
+        "port": 7429,
+        "postgresql": {
+            "url": "postgresql://notes@localhost/notes_test"
+        }
+    }
+}

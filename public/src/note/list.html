@@ -1,0 +1,37 @@
+<navbar session="$ctrl.session"></navbar>
+
+<ol class="breadcrumb">
+    <li class="active">List</li>
+</ol>
+
+<p class="clearfix">
+    <a class="btn btn-default pull-right" ng-href="#!/notes/create">Create a note</a>
+</p>
+
+<div class="alert alert-danger" ng-if="$ctrl.error" ng-bind="$ctrl.error"></div>
+
+<table ng-if="$ctrl.hasNotes" class="table table-hover">
+    <tr>
+        <th>Subject</th>
+        <th>Updated at</th>
+        <th></th>
+    </tr>
+
+    <tr ng-repeat="note in $ctrl.notes">
+        <td>
+            <a ng-href="#!/notes/{{ note.id }}" ng-bind="note.subject"></a>
+        </td>
+
+        <td ng-bind="note.updatedAt | date:'medium'"></td>
+
+        <td>
+            <a href="" ng-click="$ctrl.deleteNote(note)">
+                <span class="glyphicon glyphicon-remove text-danger"></span>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div ng-if="!$ctrl.hasNotes" class="alert alert-info" role="alert">
+    You have no notes, yet.
+</div>

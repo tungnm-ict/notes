@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#!/">
+                <img src="/img/logo_small.png" alt="hawking studio logo" width="20" height="20">
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <p class="navbar-text">Notes</p>
+
+            <div ng-if="$ctrl.session" class="navbar-right">
+                <p class="navbar-text">
+                    <img ng-src="{{ $ctrl.userAvatarUrl }}" alt="avatar" class="img-circle" width="20" height="20">
+                </p>
+
+                <p class="navbar-text" ng-bind="$ctrl.session.user.name"></p>
+
+                <p class="navbar-text">
+                    <a href="#" class="navbar-link" ng-click="$ctrl.logoutClicked($event)">Logout</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</nav>

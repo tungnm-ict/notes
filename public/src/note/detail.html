@@ -1,0 +1,20 @@
+<navbar session="$ctrl.session"></navbar>
+
+<ol class="breadcrumb">
+    <li><a href="#!/">List</a></li>
+    <li class="active" ng-bind="$ctrl.note.subject"></li>
+</ol>
+
+<p class="clearfix">
+    <a class="btn btn-default pull-right" ng-href="#!/notes/{{ $ctrl.note.id }}/edit">Edit</a>
+</p>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title" ng-bind="$ctrl.note.subject"></h3>
+    </div>
+
+    <div class="panel-body" style="white-space: pre-wrap;" ng-bind="$ctrl.note.body"></div>
+
+    <div class="panel-footer" ng-bind="$ctrl.note.updatedAt | date:'medium'"></div>
+</div>
