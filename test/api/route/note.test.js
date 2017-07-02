@@ -30,7 +30,7 @@ describe('Tests for api route note', function() {
                 note,
                 note,
                 note,
-            ])),
+                ])),
         };
     });
 
@@ -59,7 +59,7 @@ describe('Tests for api route note', function() {
                     'exposedNote',
                     'exposedNote',
                     'exposedNote',
-                ]).should.be.true();
+                    ]).should.be.true();
             });
         });
     });
@@ -84,6 +84,22 @@ describe('Tests for api route note', function() {
 
             return route.note.update(req, res).then(() => {
                 req.note.update.calledWithExactly(req.body).should.be.true();
+                res.json.calledWithExactly('exposedNote').should.be.true();
+            });
+        });
+    });
+
+    describe('update', () => {
+        it('should only update the body of a note then json the exposed note', () => {
+            req.note = note;
+
+            req.body = {
+                subject: 'some subject',
+                body: 'some body',
+            };
+
+            return route.note.update(req, res).then(() => {
+                req.note.update.calledWithExactly({'body' : 'some body'}).should.be.true();
                 res.json.calledWithExactly('exposedNote').should.be.true();
             });
         });

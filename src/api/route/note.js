@@ -19,7 +19,7 @@ module.exports.get = (req, res) => {
 };
 
 module.exports.update = (req, res) => {
-    return req.note.update(req.body).then(() => {
+    return req.note.update({'body' : req.body.body}).then(() => {
         res.json(req.note.expose());
     });
 };
