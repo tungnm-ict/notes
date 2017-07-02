@@ -15,7 +15,7 @@ angular.module('app').component('noteList', {
             this.error = null;
 
             Note.delete({
-                id: note.id
+                note_id: note.note_id
             }).$promise.then(() => {
                 $route.reload();
             }).catch(reason => {

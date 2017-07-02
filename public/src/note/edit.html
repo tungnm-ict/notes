@@ -2,7 +2,7 @@
 
 <ol class="breadcrumb">
     <li><a href="#!/">List</a></li>
-    <li><a ng-href="#!/notes/{{ $ctrl.note.id }}" ng-bind="$ctrl.note.subject"></a></li>
+    <li><a ng-href="#!/notes/{{ $ctrl.note.note_id }}" ng-bind="$ctrl.note.subject"></a></li>
     <li class="active">Edit</li>
 </ol>
 
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group pull-right">
-        <a class="btn btn-default" href="#!/notes/{{ $ctrl.note.id }}">
+        <a class="btn btn-default" href="#!/notes/{{ $ctrl.note.note_id }}">
             Cancel
         </a>
 

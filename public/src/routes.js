@@ -35,7 +35,7 @@ angular.module('app').config(function($routeProvider) {
         resolve: {
             session: Session => Session.current().$promise,
             note: (Note, $route) => Note.get({
-                id: $route.current.params.noteId
+                note_id: $route.current.params.note_id
             }).$promise
         }
     };
@@ -45,7 +45,7 @@ angular.module('app').config(function($routeProvider) {
         resolve: {
             session: Session => Session.current().$promise,
             note: (Note, $route) => Note.get({
-                id: $route.current.params.noteId
+                note_id: $route.current.params.note_id
             }).$promise
         }
     };
@@ -54,7 +54,7 @@ angular.module('app').config(function($routeProvider) {
         .when('/login', loginPage)
         .when('/error', errorPage)
         .when('/notes/create', noteCreatePage)
-        .when('/notes/:noteId', noteDetailPage)
-        .when('/notes/:noteId/edit', noteEditPage)
+        .when('/notes/:note_id', noteDetailPage)
+        .when('/notes/:note_id/edit', noteEditPage)
         .otherwise('/error');
 });
