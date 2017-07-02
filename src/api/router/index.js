@@ -38,16 +38,20 @@ function setupRoutesWithRequiredAuthentication(router) {
         route.note.create
     );
     router.get(
-        '/notes/:noteId',
+        '/notes/:note_id',
         route.note.get
     );
+    router.get(
+        '/notes/:note_id/version/:version',
+        route.note.choose_ver
+    );
     router.put(
-        '/notes/:noteId',
+        '/notes/:note_id',
         apiMiddleware.jsonParser,
         route.note.update
     );
     router.delete(
-        '/notes/:noteId',
+        '/notes/:note_id',
         route.note.delete
     );
 }

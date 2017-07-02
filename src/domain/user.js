@@ -42,14 +42,31 @@ class User {
         });
     }
 
-    note(id) {
+    note(note_id) {
         return this._user.getNotes({
             where: {
-                id
+                note_id
+            },
+            order: [['version', 'DESC']],
+        }).then(notes => {
+            if (_.size(notes) < 1) {
+                return q.reject(new domain.Error(domain.Error.Code.NOTE_NOT_FOUND));
+            }
+            else {
+                return new domain.Note(notes[0]);
+            }
+        });
+    }
+
+    choose_ver(note_id,version) {
+        return this._user.getNotes({
+            where: {
+                note_id,
+                version
             },
         }).then(notes => {
             if (_.size(notes) !== 1) {
-                return q.reject(new domain.Error(domain.Error.Code.NOTE_NOT_FOUND));
+                return q.reject(new domain.Error(domain.Error.Code.NOTE_NOT_FOUND_VERSION));
             }
             else {
                 return new domain.Note(notes[0]);

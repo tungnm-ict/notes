@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports.noteId = (req, noteId) => {
-    return req.currentUser.note(noteId).then(note => {
+module.exports.note_id = (req, note_id) => {
+    return req.currentUser.note(note_id).then(note => {
         req.note = note;
     });
 };
