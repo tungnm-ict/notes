@@ -1,12 +1,31 @@
+<style type="text/css">
+	.dropdown-menu {
+		width: 90px !important; 
+		min-width: 90px !important;
+		max-width: 90px !important;
+		text-align: center;
+	}
+</style>
+
 <navbar session="$ctrl.session"></navbar>
 
 <ol class="breadcrumb">
-    <li><a href="#!/">List</a></li>
-    <li class="active" ng-bind="$ctrl.note.subject"></li>
+	<li><a href="#!/">List</a></li>
+	<li class="active" ng-bind="$ctrl.note.subject"></li>
 </ol>
 
 <p class="clearfix">
-    <a class="btn btn-default pull-right" ng-href="#!/notes/{{ $ctrl.note.id }}/edit">Edit</a>
+	<a class="btn btn-default pull-right" ng-href="#!/notes/{{ $ctrl.note.note_id }}/edit">Edit</a>
+	<div class="pull-right">
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Version {{$ctrl.note.version}} <span class="caret"></span>
+			</button>
+			<ul ng-model="$ctrl.version" class="dropdown-menu">
+				<li ng-repeat="x in $ctrl.ver_list"><a ng-click="$ctrl.version = x ;$ctrl.changeVersion()">Version {{x}}</a></li>
+			</ul>
+		</div>
+	</div>
 </p>
 
 <div class="panel panel-default">

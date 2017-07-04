@@ -39,7 +39,7 @@ describe('Tests for api router', function() {
         });
 
         it('should setup the router', function() {
-            router.get.callCount.should.equal(3);
+            router.get.callCount.should.equal(4);
             router.post.callCount.should.equal(2);
             router.put.callCount.should.equal(1);
             router.delete.callCount.should.equal(2);
@@ -53,7 +53,7 @@ describe('Tests for api router', function() {
         });
 
         it('should setup the params', () => {
-            router.param.calledWithExactly('noteId', apiParam.noteId).should.be.true();
+            router.param.calledWithExactly('note_id', apiParam.note_id).should.be.true();
         });
 
         it('should setup the routes', () => {
@@ -77,22 +77,26 @@ describe('Tests for api router', function() {
                 '/notes',
                 route.note.list
             ).should.be.true();
+            router.get.calledWithExactly(
+                '/notes/:note_id/version/:version',
+                route.note.choose_ver
+            ).should.be.true();
             router.post.calledWithExactly(
                 '/notes',
                 apiMiddleware.jsonParser,
                 route.note.create
             ).should.be.true();
             router.get.calledWithExactly(
-                '/notes/:noteId',
+                '/notes/:note_id',
                 route.note.get
             ).should.be.true();
             router.put.calledWithExactly(
-                '/notes/:noteId',
+                '/notes/:note_id',
                 apiMiddleware.jsonParser,
                 route.note.update
             ).should.be.true();
             router.delete.calledWithExactly(
-                '/notes/:noteId',
+                '/notes/:note_id',
                 route.note.delete
             ).should.be.true();
         });

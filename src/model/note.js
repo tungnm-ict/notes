@@ -24,6 +24,20 @@ module.exports.define = sequelize => {
                 notEmpty: true
             }
         },
+        note_id: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        version: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
     }, {
         indexes: [
             {

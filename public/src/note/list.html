@@ -13,14 +13,17 @@
 <table ng-if="$ctrl.hasNotes" class="table table-hover">
     <tr>
         <th>Subject</th>
+        <th>Version</th>
         <th>Updated at</th>
         <th></th>
     </tr>
 
     <tr ng-repeat="note in $ctrl.notes">
         <td>
-            <a ng-href="#!/notes/{{ note.id }}" ng-bind="note.subject"></a>
+            <a ng-href="#!/notes/{{ note.note_id }}" ng-bind="note.subject"></a>
         </td>
+
+        <td ng-bind="note.version"></td>
 
         <td ng-bind="note.updatedAt | date:'medium'"></td>
 

@@ -12,11 +12,11 @@ angular.module('app').component('noteEdit', {
 
             if (!this.error) {
                 Note.update({
-                    id: this.note.id
+                    note_id: this.note.note_id
                 }, {
-                    body: this.note.body
+                    body: this.note.body,
                 }).$promise.then(() => {
-                    $location.path(`/notes/${ this.note.id }`);
+                    $location.path(`/notes/${ this.note.note_id }`);
                 }).catch(reason => {
                     this.error = 'Error occurred while updating the note.';
                 });
