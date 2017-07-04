@@ -133,6 +133,18 @@ describe('Tests for domain User', function() {
             });
         });
 
+        describe('choose_ver', () => {
+            it('should return a note by its note_id and version', () => {
+                return domainUser1.choose_ver(note_id1,1).then(note => {
+                    note.should.be.instanceOf(domain.Note);
+                });
+            });
+
+            it('should reject NOTE_NOT_FOUND if wrong version', () => {
+                return domainUser1.choose_ver(note_id1,10).should.be.rejectedWith(domain.Error.Code.NOTE_NOT_FOUND_VERSION.name);
+            });
+        });
+
         describe('createNote', () => {
             it('should create a new note associated to the user', () => {
                 return domainUser1.createNote({

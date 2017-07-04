@@ -12,13 +12,17 @@ describe('Tests for api route note', function() {
     let user;
 
     beforeEach(() => {
-        req = {};
+        req = {
+            params: { version: sinon.spy()}
+        };
         res = {
             json: sinon.spy(),
             sendStatus: sinon.spy(),
         };
 
         note = {
+            note_id: 'note_id',
+            version: 1,
             expose: sinon.stub().returns('exposedNote'),
             update: sinon.stub().returns(q()),
             delete: sinon.stub().returns(q()),
@@ -26,6 +30,7 @@ describe('Tests for api route note', function() {
         };
 
         user = {
+            choose_ver: sinon.stub().returns(q()),
             createNote: sinon.stub().returns(q(note)),
             notes: sinon.stub().returns(q([
                 note,
@@ -72,6 +77,27 @@ describe('Tests for api route note', function() {
             route.note.get(req, res);
 
             res.json.calledWithExactly('exposedNote').should.be.true();
+        });
+    });
+
+    describe('choose_ver', () => {
+        it('should json the exposed note', () => {
+
+            req.currentUser = user;
+
+            req.body = {
+                subject: 'some subject',
+                body: 'some body',
+            };
+
+            return route.note.create(req, res);
+
+            req.note = note;
+
+            return route.note.choose_ver(req, res).then(() => {
+                req.currentUser.choose_ver.calledWithExactly(req.note.note_id,req.params.version).should.be.true();
+                res.json.calledWithExactly('exposedNote').should.be.true();
+            });
         });
     });
 

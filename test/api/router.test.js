@@ -77,6 +77,10 @@ describe('Tests for api router', function() {
                 '/notes',
                 route.note.list
             ).should.be.true();
+            router.get.calledWithExactly(
+                '/notes/:note_id/version/:version',
+                route.note.choose_ver
+            ).should.be.true();
             router.post.calledWithExactly(
                 '/notes',
                 apiMiddleware.jsonParser,
