@@ -18,16 +18,14 @@ module.exports.list = (req, res) => {
 };
 
 module.exports.get = (req, res) => {
-    var json= req.note.expose();
-    json.total_version = req.note.version;
-    res.json(json);
+    req.note.total_version = req.note.version;
+    res.json(req.note.expose());
 };
 
 module.exports.choose_ver = (req, res) => {
     return req.currentUser.choose_ver(req.note.note_id,req.params.version).then(note => {
-        var json= note.expose();
-        json.total_version = req.note.version;
-        res.json(json);
+        note.total_version = req.note.version;
+        res.json(note.expose());
     });
 };
 
@@ -37,6 +35,7 @@ module.exports.update = (req, res) => {
     note_update.note_id = req.note.note_id;
     note_update.version = req.note.version+1;
     note_update.body = req.body.body;
+    note_update.createNote = req.body.createNote;
 
     return req.currentUser.createNote(note_update).then(note => {
         res.json(note.expose());

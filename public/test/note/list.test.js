@@ -26,11 +26,13 @@ describe('noteList', function() {
         notes = [
             new Note({
                 id: 56,
+                note_id: '12bf6db0-60b2-11e7-837c-b3afc3bbc126',
                 subject: 'some subject',
                 body: 'some body',
             }),
             new Note({
                 id: 57,
+                note_id: '57eh0y78-a5b3-wq6j-36d0-1vz8bm976mk4',
                 subject: 'another subject',
                 body: 'another body',
             }),
@@ -69,7 +71,7 @@ describe('noteList', function() {
             $rootScope.$digest();
 
             expect(Note.delete).toHaveBeenCalledWith({
-                id: 56,
+                note_id: '12bf6db0-60b2-11e7-837c-b3afc3bbc126',
             });
 
             expect($route.reload).toHaveBeenCalled();
@@ -86,7 +88,7 @@ describe('noteList', function() {
             $rootScope.$digest();
 
             expect(Note.delete).toHaveBeenCalledWith({
-                id: 56,
+                note_id: '12bf6db0-60b2-11e7-837c-b3afc3bbc126',
             });
 
             expect($route.reload).not.toHaveBeenCalled();

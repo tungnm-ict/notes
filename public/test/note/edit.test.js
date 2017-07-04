@@ -25,6 +25,7 @@ describe('noteEdit', function() {
 
         note = new Note({
             id: 56,
+            note_id: '12bf6db0-60b2-11e7-837c-b3afc3bbc126',
             subject: 'some subject',
             body: 'some body',
         });
@@ -61,12 +62,12 @@ describe('noteEdit', function() {
             $rootScope.$digest();
 
             expect(Note.update).toHaveBeenCalledWith({
-                id: 56,
+                note_id: note.note_id,
             }, {
                 body: 'new body',
             });
 
-            expect($location.path).toHaveBeenCalledWith('/notes/56');
+            expect($location.path).toHaveBeenCalledWith('/notes/12bf6db0-60b2-11e7-837c-b3afc3bbc126');
             expect(ctrl.error).toBeUndefined();
         });
 
@@ -82,12 +83,12 @@ describe('noteEdit', function() {
             $rootScope.$digest();
 
             expect(Note.update).toHaveBeenCalledWith({
-                id: 56,
+                note_id: note.note_id,
             }, {
                 body: 'new body',
             });
 
-            expect($location.path).not.toHaveBeenCalledWith('/notes/56');
+            expect($location.path).not.toHaveBeenCalledWith('/notes/12bf6db0-60b2-11e7-837c-b3afc3bbc126');
             expect(ctrl.error).toEqual('Error occurred while updating the note.');
         });
 
@@ -100,7 +101,7 @@ describe('noteEdit', function() {
 
             expect(Note.update).not.toHaveBeenCalled();
 
-            expect($location.path).not.toHaveBeenCalledWith('/notes/56');
+            expect($location.path).not.toHaveBeenCalledWith('/notes/12bf6db0-60b2-11e7-837c-b3afc3bbc126');
             expect(ctrl.error).toEqual('The body is empty.');
         });
     });

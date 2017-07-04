@@ -5,10 +5,11 @@ const q = require('q');
 require('should');
 const domain = require('../../src/domain');
 const model = require('../../src/model');
+const uuidV1 = require('uuid/v1');
 
 describe('Tests for domain User', function() {
     let userId1;
-    let noteId1;
+    let note_id1;
     let userId2;
 
     beforeEach(() => {
@@ -22,16 +23,18 @@ describe('Tests for domain User', function() {
                     return q.all(_.map(_.times(5, n => ({
                         subject: `subject ${ n }`,
                         body: `body ${ n }`,
+                        note_id: uuidV1(),
+                        version: '1',
                     })), note => {
                         return user.createNote(note);
                     })).then(notes => {
-                        noteId1 = _.first(notes).id;
+                        note_id1 = _.first(notes).note_id;
                     });
                 }),
                 model.User.createUser('user2', 'password2').then(user => {
                     userId2 = user.id;
                 })
-            ]);
+                ]);
         });
     });
 
@@ -73,7 +76,7 @@ describe('Tests for domain User', function() {
                 domain.User.getById(userId2).then(user => {
                     domainUser2 = user;
                 })
-            ]);
+                ]);
         });
 
         describe('getters', () => {
@@ -119,14 +122,14 @@ describe('Tests for domain User', function() {
         });
 
         describe('note', () => {
-            it('should return a note by its id', () => {
-                return domainUser1.note(noteId1).then(note => {
+            it('should return a note by its note_id', () => {
+                return domainUser1.note(note_id1).then(note => {
                     note.should.be.instanceOf(domain.Note);
                 });
             });
 
-            it('should reject NOTE_NOT_FOUND if wrong id', () => {
-                return domainUser2.note(noteId1).should.be.rejectedWith(domain.Error.Code.NOTE_NOT_FOUND.name);
+            it('should reject NOTE_NOT_FOUND if wrong note_id', () => {
+                return domainUser2.note(note_id1).should.be.rejectedWith(domain.Error.Code.NOTE_NOT_FOUND.name);
             });
         });
 
@@ -134,9 +137,11 @@ describe('Tests for domain User', function() {
             it('should create a new note associated to the user', () => {
                 return domainUser1.createNote({
                     subject: 'new subject',
-                    body: 'new body'
+                    body: 'new body',
+                    note_id: uuidV1(),
+                    version: '1',
                 }).then(createdNote => {
-                    return domainUser1.note(createdNote.id).should.be.fulfilled();
+                    return domainUser1.note(createdNote.note_id).should.be.fulfilled();
                 });
             });
         });

@@ -6,6 +6,7 @@ const model = require('../model');
 class Note {
     constructor(note) {
         this._note = note;
+        this.total_version=1;
     }
 
     get id() {
@@ -25,7 +26,7 @@ class Note {
     }
 
     expose() {
-        return _.pick(this._note, [
+        var arr=_.pick(this._note, [
             'id',
             'subject',
             'body',
@@ -33,6 +34,8 @@ class Note {
             'version',
             'updatedAt',
             ]);
+        arr.total_version =this.total_version;
+        return arr;
     }
 
     update(note) {

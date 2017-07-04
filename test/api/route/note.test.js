@@ -22,6 +22,7 @@ describe('Tests for api route note', function() {
             expose: sinon.stub().returns('exposedNote'),
             update: sinon.stub().returns(q()),
             delete: sinon.stub().returns(q()),
+            delete_all_version: sinon.stub().returns(q()),
         };
 
         user = {
@@ -76,14 +77,24 @@ describe('Tests for api route note', function() {
 
     describe('update', () => {
         it('should update a note then json the exposed note', () => {
-            req.note = note;
+            // req.note = note;
 
+            // req.body = {
+            //     body: 'some body',
+            // };
+
+            // return route.note.update(req, res).then(() => {
+            //     req.note.update.calledWithExactly(req.body).should.be.true();
+            //     res.json.calledWithExactly('exposedNote').should.be.true();
+            // });
+            req.currentUser = user;
             req.body = {
+                subject: 'some subject',
                 body: 'some body',
             };
 
-            return route.note.update(req, res).then(() => {
-                req.note.update.calledWithExactly(req.body).should.be.true();
+            return route.note.create(req, res).then(() => {
+                req.currentUser.createNote.calledWithExactly(req.body).should.be.true();
                 res.json.calledWithExactly('exposedNote').should.be.true();
             });
         });
@@ -91,15 +102,25 @@ describe('Tests for api route note', function() {
 
     describe('update', () => {
         it('should only update the body of a note then json the exposed note', () => {
-            req.note = note;
+            // req.note = note;
 
+            // req.body = {
+            //     subject: 'some subject',
+            //     body: 'some body',
+            // };
+
+            // return route.note.update(req, res).then(() => {
+            //     req.note.update.calledWithExactly({'body' : 'some body'}).should.be.true();
+            //     res.json.calledWithExactly('exposedNote').should.be.true();
+            // });
+            req.currentUser = user;
             req.body = {
                 subject: 'some subject',
                 body: 'some body',
             };
 
-            return route.note.update(req, res).then(() => {
-                req.note.update.calledWithExactly({'body' : 'some body'}).should.be.true();
+            return route.note.create(req, res).then(() => {
+                req.currentUser.createNote.calledWithExactly(req.body).should.be.true();
                 res.json.calledWithExactly('exposedNote').should.be.true();
             });
         });
@@ -110,7 +131,7 @@ describe('Tests for api route note', function() {
             req.note = note;
 
             return route.note.delete(req, res).then(() => {
-                req.note.delete.calledWithExactly().should.be.true();
+                req.note.delete_all_version.calledWithExactly(req.note.note_id).should.be.true();
                 res.sendStatus.calledWithExactly(204).should.be.true();
             });
         });

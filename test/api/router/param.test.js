@@ -27,7 +27,7 @@ describe('Tests for api router param', function() {
         });
 
         it('should set the note in req if correct note id', () => {
-            return param.noteId(req, 20).then(() => {
+            return param.note_id(req, 20).then(() => {
                 req.currentUser.note.calledWithExactly(20).should.be.true();
                 req.note.should.equal(note);
             });

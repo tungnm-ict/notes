@@ -96,7 +96,7 @@ describe('routes', function() {
         $route.current.resolve.note(Note, $route).then(notes => {
             expect(notes).toEqual('note');
             expect(Note.get).toHaveBeenCalledWith({
-                id: ':noteId'
+                note_id: ':note_id'
             });
 
             done();
@@ -184,7 +184,7 @@ describe('routes', function() {
 
     describe('noteDetailPage', () => {
         beforeEach(() => {
-            path = '/notes/:noteId';
+            path = '/notes/:note_id';
         });
 
         it('should resolve when current session', done => {
@@ -214,7 +214,7 @@ describe('routes', function() {
 
     describe('noteEditPage', () => {
         beforeEach(() => {
-            path = '/notes/:noteId/edit';
+            path = '/notes/:note_id/edit';
         });
 
         it('should resolve when current session', done => {

@@ -14,9 +14,6 @@ angular.module('app').component('noteEdit', {
                 Note.update({
                     note_id: this.note.note_id
                 }, {
-                    note_id: this.note.note_id,
-                    version: this.note.version,
-                    subject: this.note.subject,
                     body: this.note.body,
                 }).$promise.then(() => {
                     $location.path(`/notes/${ this.note.note_id }`);
